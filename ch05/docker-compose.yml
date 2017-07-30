@@ -1,0 +1,30 @@
+version: "3" 
+
+services:
+  node-red:
+    image: nodered/node-red-docker:slim
+    container_name: node-red-web
+    ports:
+      - "1881:1880"
+      - "9881:80"
+    volumes:
+      - node-red-web:/data
+    networks:
+      - node-red-net
+
+  db: 
+    image: couchdb:latest
+    container_name: node-red-couchdb
+    ports:
+      - "5985:5984"
+    volumes:
+      - node-red-db:/var/lib/couchdb
+    networks:
+      - node-red-net 
+
+volumes:
+  node-red-web:
+  node-red-db:
+
+networks:
+  node-red-net:
