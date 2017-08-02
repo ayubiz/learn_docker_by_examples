@@ -1,0 +1,28 @@
+
+$ sudo apt-get remove docker docker-engine docker.io -y 
+$ sudo apt-get autoremove -y 
+$ sudo apt-get purge -y
+
+$ sudo apt-get update
+$ sudo apt-get install curl -y 
+$ sudo apt-get install inux-image-extra-$(uname -r) 
+$ sudo apt-get install linux-image-extra-virtual
+$ sudo apt-get install apt-transport-https ca-certificates software-properties-common -y 
+
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+$ sudo apt-key finger 0EBFCD88
+
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+$ sudo tail -2 /etc/apt/sources.list
+
+$ sudo apt update 
+    
+$ sudo apt-get install docker-ce -y 
+
+$ docker version 
+
+$ sudo docker run hello-world
+
+$ docker ps -l
