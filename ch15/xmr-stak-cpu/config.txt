@@ -1,0 +1,37 @@
+"cpu_threads_conf" : [ 
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 1 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 2 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 3 },
+    { "low_power_mode" : false, "no_prefetch" : false, "affine_to_cpu" : 4 },
+],
+
+"use_slow_memory" : "warn",
+
+"nicehash_nonce" : true,
+
+"aes_override" : true,
+
+"use_tls" : false,
+"tls_secure_algo" : true,
+"tls_fingerprint" : "",
+
+"pool_address" : "xmr-asia1.nanopool.org:14444",
+"wallet_address" : "4BCeEPhodgPMbPWFN1dPwhWXdRX8q4mhhdZdA1dtSMLTLCEYvAj9QXjXAfF7CugEbmfBhgkqHbdgK9b2wKA6nqRZQCgvCDm.8d0ce94a3d2409ef1be551c90bbef00f438122be501bc7d2099cde2b46b3677b.test",
+"pool_password" : "z",
+
+
+"call_timeout" : 10,
+"retry_time" : 10,
+"giveup_limit" : 0,
+
+"verbose_level" : 3,
+
+"h_print_time" : 60,
+
+"daemon_mode" : false,
+
+"output_file" : "",
+
+"httpd_port" : 3128,
+
+"prefer_ipv4" : true,

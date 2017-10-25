@@ -1,0 +1,58 @@
+- name: Create instances
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  vars:
+    machine_type: n1-standard-1 
+    image: ubuntu-1604-xenial-v20170721
+    service_account_email: ansible@xx.com
+    credentials_file: gce-key.json
+    project_id: xx
+    zone: asia-xx-a
+    disk_size: 10
+
+  tasks:
+    - name: Launch instances1
+      gce:
+          instance_names: a1-swarm-admin
+          machine_type: "{{ machine_type }}"
+          image: "{{ image }}"
+          service_account_email: "{{ service_account_email }}"
+          credentials_file: "{{ credentials_file }}"
+          project_id: "{{ project_id }}"
+          disk_size: "{{ disk_size }}"
+          zone: "{{ zone }}"
+          tags: ml-api
+      register: gcea
+
+    - name: scp run.sh
+      shell: "gcloud beta compute scp run.sh a1-swarm-admin:/tmp --zone asia-xx-a --project xx"
+   
+    - name: Pause for the scp
+      pause: minutes=1
+
+    - name: install run.sh
+      shell: "gcloud beta compute --project xx ssh --zone asia-xx-a a1-swarm-admin --command \"/tmp/run.sh\""
+
+
+    - name: Launch instances2
+      gce:
+          instance_names: a1-swarm-node
+          machine_type: "{{ machine_type }}"
+          image: "{{ image }}"
+          service_account_email: "{{ service_account_email }}"
+          credentials_file: "{{ credentials_file }}"
+          project_id: "{{ project_id }}"
+          disk_size: "{{ disk_size }}"
+          zone: "{{ zone }}"
+          tags: ml-api
+
+    - name: scp run.sh
+      shell: "gcloud beta compute scp run.sh a1-swarm-node:/tmp --zone asia-xx-a --project xx"
+
+    - name: Pause for the scp
+      pause: minutes=1
+
+    - name: install run.sh
+      shell: "gcloud beta compute --project xx ssh --zone asia-east1-a a1-swarm-node --command \"/tmp/run.sh\""
